@@ -15,6 +15,16 @@ SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
+
+-- Drop for testing/display
+
+DROP TABLE IF EXISTS `admin`;
+DROP TABLE IF EXISTS `jobInfo`;
+DROP TABLE IF EXISTS `targetInfo`;
+DROP TABLE IF EXISTS `hitmanInfo`;
+DROP TABLE IF EXISTS `transaction`;
+DROP TABLE IF EXISTS `buyerInfo`;
+
 --
 -- Database: `hitman`
 --
@@ -73,14 +83,14 @@ CREATE TABLE `targetInfo` (
   `id` int(11) NOT NULL,
   `name` varchar(200) NOT NULL,
   `location` varchar(500) NOT NULL,
-  `danger` varchar(200) NOT NULL
+  `danger` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Sample data for table `targetInfo`
 --
 
-INSERT INTO `targetInfo` (`id`, `name`, `location`, 'danger') VALUES
+INSERT INTO `targetInfo` (`id`, `name`, `location`, `danger`) VALUES
 (4, 'John Smith', 'Morocco', 'High'),
 (5, 'Edgar Roberts', 'Los Angeles, CA', 'Low'),
 (7, 'Cindy Cone', 'Sydney, Austrailia', 'Mid');
@@ -117,6 +127,9 @@ INSERT INTO `buyerInfo` (`id`, `name`, `email`, `password`, `phone`, `owned`) VA
 -- Table structure for table `hitmanInfo`
 --
 
+
+
+
 CREATE TABLE `hitmanInfo` (
   `id` int(11) NOT NULL,
   `truename` varchar(50) NOT NULL,
@@ -125,7 +138,7 @@ CREATE TABLE `hitmanInfo` (
   `password` varchar(20) NOT NULL,
   `phone` varchar(13) NOT NULL,
   `location` varchar(50) NOT NULL,
-  `jobNumber` varchar(10) NOT NULL,
+  `hitNumber` varchar(10) NOT NULL,
   `retainer` varchar(20) NOT NULL,
   `date` date NOT NULL,
   `oid` varchar(10) NOT NULL
@@ -135,10 +148,10 @@ CREATE TABLE `hitmanInfo` (
 -- Sample data for table `hitmanInfo`
 --
 
-INSERT INTO `hitmanInfo` (`id`, `truename`, 'codename', `email`, `password`, `phone`, `location`, `jobNumber`, `retainer`, `date`, `oid`) VALUES
-(9, 'David Webster', 'Shark', 'killershark@gmail.com', '1234', '3432542345', 'New York, NY', '16', '5000', '2000-11-21', '3'),
-(10, 'Ana Lucia Gomez', 'Vertigo', 'killervertigo@gmail.com', '1234', '3456787890', 'Paris, France', '14', '2000', '2018-09-23', '8'),
-(11, 'Eddie Jones', 'Hammerhead', 'hammerhead@gmail.com', '1234', '5532564547', 'San Diego, CA', '19', '5000', '2019-08-01', '9');
+INSERT INTO `hitmanInfo` (`id`, `truename`, `codename`, `email`, `password`, `phone`, `location`, `hitNumber`, `retainer`, `date`, `oid`) VALUES
+(9, 'David Webster', 'Shark', 'killershark@gmail.com', '1234', '3432542345', 'New York, NY', '16', '$5000', '2000-11-21', '3'),
+(10, 'Ana Lucia Gomez', 'Vertigo', 'killervertigo@gmail.com', '1234', '3456787890', 'Paris, France', '14', '$2000', '2018-09-23', '8'),
+(11, 'Eddie Jones', 'Hammerhead', 'hammerhead@gmail.com', '1234', '5532564547', 'San Diego, CA', '19', '$5000', '2019-08-01', '9');
 
 -- --------------------------------------------------------
 
@@ -150,7 +163,7 @@ CREATE TABLE `transaction` (
   `id` int(11) NOT NULL,
   `tid` int(4) NOT NULL,
   `date` date NOT NULL,
-  `amount` varchar(10) NOT NULL
+  `amount` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -158,11 +171,11 @@ CREATE TABLE `transaction` (
 --
 
 INSERT INTO `transaction` (`id`, `tid`, `date`, `amount`) VALUES
-(9, 6, '2019-07-23', '500'),
-(10, 6, '2019-03-05', '5000'),
-(11, 7, '2017-01-06', '2000'),
-(12, 10, '2016-10-17', '4500'),
-(13, 11, '2019-12-23', '5000');
+(9, 6, '2019-07-23', '$500'),
+(10, 6, '2019-03-05', '$5000'),
+(11, 7, '2017-01-06', '$2000'),
+(12, 10, '2016-10-17', '$4500'),
+(13, 11, '2019-12-23', '$5000');
 
 
 
