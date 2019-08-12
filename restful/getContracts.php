@@ -2,11 +2,11 @@
 
 
 
-if(isset($_GET['bid'])){
+if(isset($_GET['contractNumber'])){
 
-        $bid=$_GET['bid'];
+        $contractValue=$_GET['contractNumber'];
         include '../conn.php';
-         $qry="select * from jobsInfo where bid=$bid and id Not In(select owned from buyerInfo);";
+         $qry="select * from contracts where contractNumber=$id";
                                 if ($result = $con->query($qry)) {
 
 
@@ -15,12 +15,12 @@ if(isset($_GET['bid'])){
 
 <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
 
-                        <option value=" " >Select Job</option>
+                        <option value=" ">Select contracts</option>
       <?php
     while ($row = $result->fetch_assoc()) {
                     ?>
 
-                    <option value="<?php echo $row['id']; ?>" ><?php echo $row['jobNumber']; ?>
+                    <option value="<?php echo $row['id']; ?>" ><?php echo $row['contractNumber']; ?>
                         </option>
 
 
@@ -30,7 +30,7 @@ if(isset($_GET['bid'])){
 
 <?php
 }else{
-    echo ' <option value=" " >No Jobs Available</option>        ';
+    echo ' <option value=" " >No contracts available</option>        ';
 }
 }
                ?>

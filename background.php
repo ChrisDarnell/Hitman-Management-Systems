@@ -1,6 +1,10 @@
 <?php
 
-
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 ?>
 <html>
     <head>
@@ -8,7 +12,7 @@
             back
         </title>
     </head>
-    <body style="background-image: url('img/hitman.jpg'); background-size: cover; background-repeat: no-repeat">
-
+    <body style="background-image: url('img/res1-big.jpg'); background-size: cover; background-repeat: no-repeat">
+        
     </body>
 </html>

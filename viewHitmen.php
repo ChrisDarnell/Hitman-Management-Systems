@@ -1,11 +1,10 @@
 <?php
-include 'buyerValidate.php';
+include 'clientValidate.php';
 
- */
 ?>
 <html>
     <head>
-        <title>Hitman Management</title>
+        <title>Hitman Management System by Chris Darnell</title>
          <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -17,13 +16,13 @@ include 'buyerValidate.php';
 </head>
 <body style="background-image: linear-gradient(to right, #3E5151 , #DECBA4);">
     <?php
-    include 'buyerNav.php';
+    include 'clientNav.php';
     include 'conn.php';
     if(isset($_GET['delete']))
   {
 
        $id= $_GET['id'];
-     $qry1="DELETE FROM hitmanInfo WHERE id=$id";
+     $qry1="DELETE FROM assassin WHERE id=$id";
       $run= mysqli_query($con,$qry1);
   }
     ?>
@@ -33,49 +32,44 @@ include 'buyerValidate.php';
     <table class="table" style="margin-left: 04%" id="table">
      <thead class="thead-dark" style="color: #fff;">
         <th>ID</th>
-        <th>True Name</th>
-        <th>Code Name</th>
+        <th>Name</th>
         <th>Email</th>
-        <th>Phone</th>
-        <th>Location</th>
-        <th>Apartment</th>
-        <th>Retainer</th>
-        <th>Date Active</th>
+        <th>phone</th>
+        <th>contracts</th>
+        <th>contracts</th>
+        <th>Rent</th>
+        <th>Date</th>
           <th>Delete</th>
         </thead>
         <tbody>
 
                      <?php
          include 'conn.php';
-         $sql = "select * from hitmanInfo where oid = $oid";
+         $sql = "select * from assassin where assasId = $assasId";
          if ($result = $con->query($sql)) {
 
-    // fetch Hitmen
-
+    /* fetch object array */
     while ($row = $result->fetch_assoc()) {
 
         ?>
             <tr>
 
                 <td><?php echo $row['id']?></td>
-                <td><?php echo $row['truename']?></td>
-                <td><?php echo $row['codename']?></td>
+                <td><?php echo $row['name']?></td>
                 <td><?php echo $row['email']?></td>
                 <td><?php echo $row['phone']?></td>
-                 <td><?php echo $row['location']?></td>
-                 <td><?php echo $row['apartment']?></td>
-                 <td><?php echo $row['retainer']?></td>
+                 <td><?php echo $row['contracts']?></td>
+                 <td><?php echo $row['contracts']?></td>
+                 <td><?php echo $row['rent']?></td>
                  <td><?php echo $row['date']?></td>
-                 <td><a href="viewHitmen.php?delete=true&id=<?php  echo $row['id'];?>"><i class="fa fa-trash-o"></i></a></td>
+                 <td><a href="viewassassins.php?delete=true&id=<?php  echo $row['id'];?>"><i class="fa fa-trash-o"></i></a></td>
             </tr>
             <?php
 
 
     }
 
-    /* free results */
-
-
+    /* free result set */
     $result->close();
 }
 

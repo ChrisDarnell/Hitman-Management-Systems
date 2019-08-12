@@ -3,8 +3,8 @@
 
 
 session_start();
-if(!isset($_SESSION['tid'])){
+if(!isset($_SESSION['hitmanId'])){
     header('location:hitmanLogin.php');
     die();
 }
-$tid=$_SESSION['tid'];
+$hitmanId=$_SESSION['hitmanId'];

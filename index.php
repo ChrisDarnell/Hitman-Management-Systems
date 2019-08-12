@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 
-
-
 <html>
 
   <head>
@@ -17,12 +15,12 @@
 <nav class="navbar navbar-default navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Hitman Management System by Chris Darnell: Admin Management</a>
+      <a class="navbar-brand" href="#">Hitman Management System by Chris Darnell</a>
     </div>
     <ul class="nav navbar-nav pull-right">
 
       <li class="active"><a href="index.php">Admin Login</a></li>
-      <li><a href="buyerLogin.php">Buyer Login</a></li>
+      <li><a href="clientLogin.php">Client Login</a></li>
       <li><a href="hitmanLogin.php">Hitman Login</a></li>
 
     </ul>
@@ -31,19 +29,18 @@
 
 
 <div class="container">
+  <div style="width: 400px;margin-left: 35%;margin-top: 2%;box-shadow: 0px 0px 5px #660066;padding:20px">
+      <div style='text-align: center;padding:20px;background:  linear-gradient(To top right,#033,#3cc);color:white;border-radius: 25% 25% 0% 0%'>Admin Login</div>
 
-
-  <div style="width: 400px;margin-left: 35%;box-shadow: 0px 0px 5px #660066;padding:20px;">
-      <div style='text-align: center;padding:20px;background-image: linear-gradient(to right, #3E5151 , #DECBA4); border-radius: 15% 25% 0% 25%'>Admin Login</div>
  <form class="form-horizontal" action="loginHandler.php" method="post">
   <div class="form-group">
-    <label class="control-label col-sm-2" for="email">Email:</label>
+    <label class="control-label col-sm-2" style="color:white" for="email">Email:</label>
     <div class="col-sm-10">
       <input type="email" class="form-control" name="email" placeholder="Enter email">
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label col-sm-2" for="pwd">Password:</label>
+    <label class="control-label col-sm-2" style="color:white" for="pwd">Pass:</label>
     <div class="col-sm-10">
       <input type="password" class="form-control" name="pwd" placeholder="Enter password">
     </div>

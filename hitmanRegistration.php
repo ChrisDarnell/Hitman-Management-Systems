@@ -1,92 +1,113 @@
-<?php
-include 'buyerValidate.php';
-?>
 <html>
     <head>
-        <title>Hitman Management System by Chris Darnell</title>
+        <title>Hitman Registration</title>
          <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-  <style>
-      #img {
-    opacity: 0.5;
-    filter: alpha(opacity=50); /* For IE8 and earlier */
-}
-  </style>
 </head>
-    <body>
+<body style="background-image: linear-gradient(to right, blue , #DECBA4);">
         <?php
-        include 'buyerNav.php';
+        include 'adminNav.php';
         include 'conn.php';
 
+
+// Add new...
+
         if(isset($_POST['submit'])){
-            $name= $_POST['name'];
+            $truename= $_POST['truename'];
+            $codename= $_POST['codename'];
             $email= $_POST['email'];
             $pass= $_POST['pass'];
-            $mobile= $_POST['phone'];
-            $building=$_POST['location'];
-            $apartment=$_POST['apartment'];
-            $rent=$_POST['rent'];
+            $phone= $_POST['phone'];
+            $location= $_POST['location'];
+            $retainer= $_POST['retainer'];
 
-            $qry="insert intp hitmanInfo(name,email,password,phone,location,jobNumber,retainer,date,oid) value('$name','$email','$pass','$mobile','$building','$apartment','$rent',CURDATE(),'$oid');";
+
+            $qry="insert into assassin(truename, codename, email, password, phone, location, retainer) values ('$truename', '$codename', '$email','$pass','$phone', '$location', '$retainer');";
             $run= mysqli_query($con,$qry);
             if($run==TRUE){
                 echo 'Record Inserted';
             }
-
         }
         ?>
-        <div  style=" background-image: url('img/hitman.jpg');background-size: cover;background-repeat: no-repeat;width: 95%; height:80% ;margin-left: 2%;margin-top: 1.5%;box-shadow: 0px 0px 5px #660066;padding:20px">
-            <div>
-                <form class="form-horizontal" action="hitmanRegistration.php" method="post">
+
+        <div style="width: 400px;margin-left: 35%;margin-top: 1.5%;box-shadow: 0px 0px 5px #660066;padding:20px">
+            <div style='text-align: center;padding:20px;background:  linear-gradient(To top right,#033,#3cc);color:white;border-radius: 25% 25% 0% 0%'>Add Hitman</div>
+            <legend></legend>
+            <form class="form-horizontal" action="hitmanRegistration.php" method="post">
             <input type="hidden" name="id" value="<?php echo $id;?>"/>
-            <legend>
-                Hitman Registration
-            </legend>
-            <div class="form-group" style="margin-left: 10%">
-  <div class="col-md-4 inputGroupContainer">
+
+            <div class="form-group">
+  <div class="col-md-8 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input style="width: 110%;height: 40px" name="name" placeholder=" Name" required="" class="form-control"  type="text" value="" >
+  <input style="width: 150%" name="truename" placeholder="True Name" required="" class="form-control"  type="text" value="" >
     </div>
   </div>
 </div>
-            <div class="form-group" style="margin-left: 10%">
-  <div class="col-md-4 inputGroupContainer">
+<div class="form-group">
+<div class="col-md-8 inputGroupContainer">
+<div class="input-group">
+<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+<input style="width: 150%" name="codename" placeholder="Code Name" required="" class="form-control"  type="text" value="" >
+</div>
+</div>
+</div>
+            <div class="form-group">
+  <div class="col-md-8 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-  <input  name="email" style="width: 110%;height: 40px" placeholder="you@example.org" required="" class="form-control"  type="text" value="" >
+  <input  name="email" style="width: 150%" placeholder="Email" required="" class="form-control"  type="text" value="" >
     </div>
   </div>
 </div>
 
-            <div class="form-group" style="margin-left: 10%">
-  <div class="col-md-4 inputGroupContainer">
+            <div class="form-group">
+  <div class="col-md-8 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-  <input  name="pass" style="width: 110%;height: 40px" placeholder=" Password" required="" class="form-control"  type="text" value="" >
+  <input  name="pass" style="width: 150%" placeholder="Set Password" required="" class="form-control"  type="text" value="" >
     </div>
   </div>
 </div>
-            <div class="form-group" style="margin-left: 10%">
-  <div class="col-md-4 inputGroupContainer">
+            <div class="form-group">
+  <div class="col-md-8 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-  <input  name="mobile" style="width: 110%;height: 40px" placeholder=" +91<10 digit>" required="" class="form-control"  type="text" value="" >
+  <input  name="phone" style="width: 150%" placeholder="Phone" required="" class="form-control"  type="text" value="" >
     </div>
   </div>
 </div>
+<div class="form-group">
+<div class="col-md-8 inputGroupContainer">
+<div class="input-group">
+<span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+<input  name="location" style="width: 150%" placeholder="Location" required="" class="form-control"  type="text" value="" >
+</div>
+</div>
+</div>
+<div class="form-group">
+<div class="col-md-8 inputGroupContainer">
+<div class="input-group">
+<span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+<input  name="retainer" style="width: 150%" placeholder="Base Retainer" required="" class="form-control"  type="text" value="" >
+</div>
+</div>
+</div>
 
+<!--
 
-
-            <select class="form-control" style="display:inline; margin-left: 140px; width: 20%;" name="targetInfo" id="targetInfo">
-                 <option>Select Target</option>
+            <div class="form-group">
+  <div class="col-md-8 inputGroupContainer">
+            <div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            <select class="form-control" style="display:inline; width: 150%;" name="contracts" id="contracts" >
+                 <option>Select contracts</option>
                     <?php
                                 include 'conn.php';
-                                $qry="select * from targetInfo";
+                                $qry="select * from contracts";
                                 if ($result = $con->query($qry)) {
 
     /* fetch object array */
@@ -100,39 +121,72 @@ include 'buyerValidate.php';
     }
     }
     ?> </select>
-
-           <select class="form-control" style="display:inline; width: 20%;" name="jobInfo" id="jbInfo">
-                 <option>Select Target first</option>
-
-
-             </select>
-
-            <div class="form-group" style="margin-left: 10%;margin-top: 20px">
-  <div class="col-md-4 inputGroupContainer">
-  <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
-  <input  name="rent" style="width: 110%;height: 40px" placeholder=" Rent Amount" required="" class="form-control"  type="text" value="" >
-    </div>
-  </div>
-</div>
-
-            <button style="margin-left: 80%; margin-top: 20px" type='submit' class="btn btn-warning" name="submit" value="submit">Register</button>
-            </form>
             </div>
-        </div>
+  </div></div>
 
-         <script>
+            <div class="form-group">
+  <div class="col-md-8 inputGroupContainer">
 
-          $("#targetInfo").change(function(){
-                    console.log("Job changed");
-                    var bid=$("#targetInfo").val();
-                      console.log("bid:"+bid);
-            $.get("restful/getHitmen.php?bid="+bid, function(data, status){
+            <div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-equalizer"></i></span>
+     <select id="htMn" name="htMn" class="form-control selectpicker" style="display:inline; width: 150%;" >
+      <option value=" ">Select Contract First</option>
 
-                $('#jbInfo').html(data);
-                console.log("success");
+    </select>
+            </div>
+  </div></div> -->
+            <button style="margin-left: 40%; margin-top: 20px" type='submit' class="btn btn-warning" name="submit" value="submit">Register</button>
+               </form>
+
+               <table class="table table-hover table-condensed" style="margin-top: 5%">
+                   <thead style="background: #660066;color:white">
+                   <th>ID</th>
+                     <th>True Name</th>
+                     <th>Code Name</th>
+                     <th>Email</th>
+                     <th>Phone</th>
+                     <th>Location</th>
+                     <th>Retainer</th>
+                   </thead>
+                   <tbody>
+                       <?php
+                       $sql = "select * from assassin;";
+                       $result=mysqli_query($con,$sql);
+                       if($result){
+                           while($row = $result->fetch_assoc()){
+
+
+                       ?>
+                       <tr>
+                           <td><?php echo $row['id'];?></td>
+                           <td><?php echo $row['truename'];?></td>
+                           <td><?php echo $row['codename'];?></td>
+                           <td><?php echo $row['email']; ?></td>
+                           <td><?php echo $row['phone'];?></td>
+                           <td><?php echo $row['location'];?></td>
+                           <td><?php echo $row['retainer'];?></td>
+                           <td><a href="assassins.php?update=1&id=<?php echo $row['id'];?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                           <td><a href="deletecontracts.php?id=<?php echo $row['id'];?>"><span class="glyphicon glyphicon-trash"></span></a></td>
+                       </tr>
+                       <?php
+                       }
+                       }
+                       ?>
+                   </tbody>
+               </table>
+                       </div>
+
+
+        <!-- <script>
+          $("#contracts").change(function(){
+                    console.log("Reached contracts change");
+                    var contractValue=$("#contracts").val();
+                      console.log("contractValue:"+contractValue);
+            $.get("restful/getContracts.php?contractValue="+contractValue, function(data, status){
+
+                $('#htMn').html(data);
+                console.log("Success!");
             });
          });
-         </script>
-
+         </script> -->
     </body>
