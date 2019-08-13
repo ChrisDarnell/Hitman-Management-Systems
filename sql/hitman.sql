@@ -57,19 +57,21 @@ CREATE TABLE `contracts` (
   `id` int(11) NOT NULL,
   `contractValue` varchar(40) NOT NULL,
   `contractNumber` varchar(200) NOT NULL,
-  `description` varchar(200) NOT NULL
+  `description` varchar(200) NOT NULL,
+  `clientId` int(11) NOT NULL,
+  `hitmanId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Sample data for 'contracts'
 --
 
-INSERT INTO `contracts` (`id`, `contractValue`, `contractNumber`, `description`) VALUES
-(11, '$800000', 'B546', 'Evil Person #1 - Los Angeles, CA'),
-(12, '$75000', 'CS34', 'Evil Person #2 - Very Dangerous'),
-(13, '$1000', 'D567', 'Evil Person #3'),
-(14, '$10000', 'M542', 'Evil Person #4'),
-(15, '$115000', '3R56', 'Evil Person #5');
+INSERT INTO `contracts` (`id`, `contractValue`, `contractNumber`, `description`, `clientId`, `hitmanId`) VALUES
+(11, '$800000', 'B546', 'Evil Person #1 - Los Angeles, CA', 2, 9),
+(12, '$75000', 'CS34', 'Evil Person #2 - Very Dangerous', 3, 10),
+(13, '$1000', 'D567', 'Evil Person #3', 2, 11),
+(14, '$10000', 'M542', 'Evil Person #4', 3, 9),
+(15, '$115000', '3R56', 'Evil Person #5', 2, 10);
 
 
 
@@ -102,9 +104,6 @@ INSERT INTO `clients` (`id`, `name`, `email`, `password`, `phone`) VALUES
 -- Table structure for table `assassin`
 --
 
-
-
-
 CREATE TABLE `assassin` (
   `id` int(11) NOT NULL,
   `truename` varchar(50) NOT NULL,
@@ -113,7 +112,7 @@ CREATE TABLE `assassin` (
   `password` varchar(20) NOT NULL,
   `phone` varchar(13) NOT NULL,
   `location` varchar(50) NOT NULL,
-  `retainer` varchar(20) NOT NULL,
+  `retainer` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -121,9 +120,9 @@ CREATE TABLE `assassin` (
 --
 
 INSERT INTO `assassin` (`id`, `truename`, `codename`, `email`, `password`, `phone`, `location`, `retainer`) VALUES
-(9, 'David Webster', 'Shark', 'killershark@gmail.com', '1234', '3432542345', 'New York, NY', '16', '$5000'),
-(10, 'Ana Lucia Gomez', 'Vertigo', 'killervertigo@gmail.com', '1234', '3456787890', 'Paris, France', '14', '$2000'),
-(11, 'Eddie Jones', 'Hammerhead', 'hammerhead@gmail.com', '1234', '5532564547', 'San Diego, CA', '19', '$5000');
+(9, 'David Webster', 'Shark', 'killershark@gmail.com', '1234', '3432542345', 'New York, NY', '$5000'),
+(10, 'Ana Lucia Gomez', 'Vertigo', 'killervertigo@gmail.com', '1234', '3456787890', 'Paris, France', '$2000'),
+(11, 'Eddie Jones', 'Hammerhead', 'hammerhead@gmail.com', '1234', '5532564547', 'San Diego, CA', '$5000');
 
 -- --------------------------------------------------------
 
@@ -164,7 +163,8 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `contracts`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `contractValue` (`contractValue`);
+  ADD KEY `clientId` (`clientId`);
+  -- ADD KEY `hitmanId` (`hitmanId`);
 
 --
 -- Indexes for table `clients`
@@ -202,10 +202,6 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `contracts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
---
--- AUTO_INCREMENT for table `targetInfo`
---
 
 
 --

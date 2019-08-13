@@ -7,7 +7,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<body style="background-image: linear-gradient(to right, blue , #DECBA4);">
+<body style="background-image: url('img/gunman.jpg');background-attachment: fixed; background-repeat: no-repeat; background-size: cover">
         <?php
         include 'adminNav.php';
         include 'conn.php';
@@ -94,49 +94,10 @@
 <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
 <input  name="retainer" style="width: 150%" placeholder="Base Retainer" required="" class="form-control"  type="text" value="" >
 </div>
-</div>
-</div>
 
-<!--
-
-            <div class="form-group">
-  <div class="col-md-8 inputGroupContainer">
-            <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-            <select class="form-control" style="display:inline; width: 150%;" name="contracts" id="contracts" >
-                 <option>Select contracts</option>
-                    <?php
-                                include 'conn.php';
-                                $qry="select * from contracts";
-                                if ($result = $con->query($qry)) {
-
-    /* fetch object array */
-
-    while ($row = $result->fetch_assoc()) {
-                    ?>
-
-                    <option value="<?php echo $row['id' ]; ?>"><?php echo $row['Name']; ?>
-                        </option>
-               <?php
-    }
-    }
-    ?> </select>
-            </div>
-  </div></div>
-
-            <div class="form-group">
-  <div class="col-md-8 inputGroupContainer">
-
-            <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-equalizer"></i></span>
-     <select id="htMn" name="htMn" class="form-control selectpicker" style="display:inline; width: 150%;" >
-      <option value=" ">Select Contract First</option>
-
-    </select>
-            </div>
-  </div></div> -->
             <button style="margin-left: 40%; margin-top: 20px" type='submit' class="btn btn-warning" name="submit" value="submit">Register</button>
                </form>
+               </div></div></div></div>
 
                <table class="table table-hover table-condensed" style="margin-top: 5%">
                    <thead style="background: #660066;color:white">
@@ -147,6 +108,8 @@
                      <th>Phone</th>
                      <th>Location</th>
                      <th>Retainer</th>
+                    <th>Update</th>
+                       <th>Delete</th>
                    </thead>
                    <tbody>
                        <?php
@@ -177,16 +140,5 @@
                        </div>
 
 
-        <!-- <script>
-          $("#contracts").change(function(){
-                    console.log("Reached contracts change");
-                    var contractValue=$("#contracts").val();
-                      console.log("contractValue:"+contractValue);
-            $.get("restful/getContracts.php?contractValue="+contractValue, function(data, status){
 
-                $('#htMn').html(data);
-                console.log("Success!");
-            });
-         });
-         </script> -->
     </body>

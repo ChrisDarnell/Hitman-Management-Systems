@@ -16,7 +16,7 @@ if(isset($_POST['hitmanId'])){
     if($run=TRUE){
         ?>
 <script>
-        alert('Payment Successfull !!');
+        alert('Payment Successful!!');
         window.open('hitman.php','_self');
 
         </script>
