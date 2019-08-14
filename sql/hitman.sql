@@ -66,12 +66,12 @@ CREATE TABLE `contracts` (
 -- Sample data for 'contracts'
 --
 
-INSERT INTO `contracts` (`id`, `contractValue`, `contractNumber`, `description`, `clientId`, `hitmanId`) VALUES
-(11, '$800000', 'B546', 'Evil Person #1 - Los Angeles, CA', 2, 9),
-(12, '$75000', 'CS34', 'Evil Person #2 - Very Dangerous', 3, 10),
-(13, '$1000', 'D567', 'Evil Person #3', 2, 11),
-(14, '$10000', 'M542', 'Evil Person #4', 3, 9),
-(15, '$115000', '3R56', 'Evil Person #5', 2, 10);
+INSERT INTO `contracts` (`id`, `contractValue`, `contractNumber`, `description`) VALUES
+(11, '$800000', 'B546', 'Evil Person #1 - Los Angeles, CA'),
+(12, '$75000', 'CS34', 'Evil Person #2 - Very Dangerous'),
+(13, '$1000', 'D567', 'Evil Person #3'),
+(14, '$10000', 'M542', 'Evil Person #4'),
+(15, '$115000', '3R56', 'Evil Person #5');
 
 
 
@@ -163,8 +163,8 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `contracts`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `clientId` (`clientId`);
-  -- ADD KEY `hitmanId` (`hitmanId`);
+  ADD KEY `clientId` (`clientId`),
+  ADD KEY `hitmanId` (`hitmanId`);
 
 --
 -- Indexes for table `clients`
