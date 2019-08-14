@@ -25,11 +25,11 @@ if($result->num_rows>0){
     header('location:clients.php');
     }else if(isset($_POST['clientBtn'])){
         $row = $result->fetch_assoc();
-         $_SESSION['assasId']= $row['id'];
-         header('location:hitman.php');
+         $_SESSION['clientId']= $row['id'];
+         header('location:clientDashboard.php');
     }else if(isset($_POST['hitmanBtn'])){
             $row = $result->fetch_assoc();
-             $_SESSION['id']= $row['id'];
+             $_SESSION['hitmanId']= $row['id'];
              header('location:hitman.php');
     }
 
