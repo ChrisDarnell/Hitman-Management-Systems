@@ -37,13 +37,13 @@ div.a {
     <body style="background-image: url('img/hitman.jpg');background-attachment: fixed; background-repeat: no-repeat; background-size: cover">
 
         <?php
-        include 'conn.php';
-        include 'clientValidate.php';
-        $sql = select * from contracts as totalContracts;
-                $run= mysqli_query($con, $sql);{
-
-                while ($row = $run->fetch_assoc()) {
-      $contracts= $row['totalContracts'];
+      //   include 'conn.php';
+      //   include 'clientValidate.php';
+      //   $sql = select * from contracts as totalContracts;
+      //           $run= mysqli_query($con, $sql);{
+      //
+      //           while ($row = $run->fetch_assoc()) {
+      // $contracts= $row['totalContracts'];
 
 
 
@@ -53,15 +53,16 @@ div.a {
             <div  class="col-sm-6 box" style="background-color:black; margin-left:25%; height: 200px; width: 300px; ">
                 <h1 style="color: green">Pending Contracts<br></h1>
                     <div class="a" style="margin-left:90px;color: green">
-                   <?php      echo $contracts;
+                   <?php
+                   // echo $contracts;
                  ?>
                </div>
 
             </div>
 
         <?php
-                }
-                } ?>
+
+                 ?>
 
 
 </body>

@@ -2,9 +2,9 @@
 
 
 session_start();
-if(!isset($_SESSION['assasId'])){
+if(!isset($_SESSION['clientId'])){
 
     header('location:clientLogin.php');
     die();
 }
-$assasId= $_SESSION['assasId'];
+$clientId= $_SESSION['clientId'];
