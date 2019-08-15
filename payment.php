@@ -8,10 +8,10 @@ if(isset($_POST['hitmanId'])){
     $sql="select retainer from assassin where id=$hitmanId";
     if($result= mysqli_query($con, $sql)){
         $row =$result->fetch_assoc();
-        $rent=$row['retainer'];
+        $retainer=$row['retainer'];
     }
 
-    $qry="insert into transaction (hitmanId,date,amount) values('$hitmanId',CURDATE(),'$rent')";
+    $qry="insert into transaction (id,date,amount) values('$hitmanId',CURDATE(),'$retainer')";
     $run=mysqli_query($con,$qry);
     if($run=TRUE){
         ?>

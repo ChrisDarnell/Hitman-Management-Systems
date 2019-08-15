@@ -2,10 +2,11 @@
 include 'conn.php';
 
 $id=0;
-$contractValue=$contractNumber=$desc=$client=$hitman="";
+$contractValue=$contractNumber=$desc=$clientId=$hitmanId="";
 if(isset($_GET['update'])){
     $id = $_GET['id'];
      $qry="select * from contracts where id=$id";
+          // "select "
   if ($result = $con->query($qry)) {
 
 
@@ -13,8 +14,8 @@ if(isset($_GET['update'])){
     $contractValue=$row['contractValue'];
     $contractNumber=$row['contractNumber'];
     $desc=$row['description'];
-    $client=$row['client'];
-    $hitman=$row['hitman'];
+    $clientId=$row['clientId'];
+    $hitmanId=$row['hitmanId'];
     }
     }
            }
@@ -26,11 +27,11 @@ if(isset($_POST['submit'])){
     $contractNumber=$_POST['$contractNumber'];
     $desc=$_POST['desc'];
     $id= $_POST['id'];
-    $client=$row['client'];
-    $hitman=$row['hitman'];
+    $clientId=$row['clientId'];
+    $hitmanId=$row['hitmanId'];
 
     if($id){
-     $qry="Update contracts set contractValue='$contractValue',contractNumber='$contractNumber',description='$desc' ,client='$client', hitman=`$hitman` where id='$id'";
+     $qry="Update contracts set contractValue='$contractValue',contractNumber='$contractNumber',description='$desc' ,clientId='$client', hitmanId=`$hitman` where id='$id'";
      $id=0;
      $contractValue=$contractNumber=$desc=$client="";
     }else{
@@ -115,33 +116,33 @@ while ($row = $result->fetch_assoc()) {
   </div>  </div>
   </div>
     <div class="form-group" style="margin-top: 1px">
-      <div style="text-align: left; padding-top: 10px; margin-left: 5%">
+      <div style="text-align: left; padding-top: 1px; margin-left: 1%">
     <label class="control-label col-sm-2" for="contracts">Price:</label>
-    <div class="col-sm-10" style="margin-top:1px">
+    <div class="col-sm-6" style="margin-top:1px">
         <div style="text-align: left; padding-top: 10px; margin-left: 5%">
         <input type="text" class="form-control" name="contract" required="" placeholder="Contract Value" value="<?php echo $contractNumber;?>"/><br>
     <div class="form-group" style="margin-top: 1px">
     <label class="control-label col-sm-2" style="color:blue" for="contracts">Contract Number:</label>
     <div class="col-sm-10" style="margin-top:10px">
         <input type="text" class="form-control" name="contractValue" required="" placeholder="Assign Contract Number" value="<?php echo $contractNumber;?>"/><br>
-    </div>
-    </div>
-            <div style="margin-left: 30px; text-align: right">
+
+
+            <div style="margin-left: 10px; text-align: right">
             <label class="control-label col-sm-2" style="color:blue" for="contracts">Contract Description:</label>
             <div class="form-group" style="margin-top: 1px">
     <div class="col-sm-10" style="margin-top:0.1px">
          <div style="text-align: left">
         <textarea class="form-control" name="desc" required="" placeholder="Contract Description" ><?php echo $desc;?></textarea><br>
     </div>
-            </div>
-          </div>
+
+
             <br>
              <button class="btn btn-warning" type="submit" name="submit" value="add">Submit</button>
         </form>
       </div>
-         </div> </div></div></div></div>
-        <div class="col-md-8">
-                <div>
+
+        <div class="col-md-18">
+
         <table class="table table-hover table-condensed" style="margin-top: 5%">
             <thead style="background: #660066;color:white">
             <th>ID</th>
@@ -149,8 +150,8 @@ while ($row = $result->fetch_assoc()) {
              <th>Contract Value</th>
               <th>Job Number</th>
               <th>Description</th>
-              <th>Client</th>
-              <th>Hitman</th>
+              <th>Client ID</th>
+              <th>Hitman ID</th>
               <th>Update</th>
               <th>Delete</th>
             </thead>
@@ -168,8 +169,8 @@ while ($row = $result->fetch_assoc()) {
                     <td><?php echo $row['contractValue'];?></td>
                     <td><?php echo $row['contractNumber'];?></td>
                     <td><?php echo $row['description']; ?></td>
-                    <td><?php echo $row['client']; ?></td>
-                    <td><?php echo $row['codename']; ?></td>
+                    <td><?php echo $row['clientId']; ?></td>
+                    <td><?php echo $row['hitmanId']; ?></td>
                     <td><a href="contracts.php?update=1&id=<?php echo $row['id'];?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
                     <td><a href="deletecontracts.php?id=<?php echo $row['id'];?>"><span class="glyphicon glyphicon-trash"></span></a></td>
                 </tr>

@@ -5,7 +5,7 @@
 <nav class="navbar navbar-default navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Hitman Management System by Chris Darnell</a>
+      <a class="navbar-brand" href="#">Admin Management</a>
     </div>
     <ul class="nav navbar-nav pull-right">
 

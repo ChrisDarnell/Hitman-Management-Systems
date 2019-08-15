@@ -45,14 +45,13 @@ div.a {
             <div  class="col-md-7 box" style="background-color:#adadad; margin-left:1%; ">
         <?php
         include 'conn.php';
-
-        $sql = "select * from assassin;";
+        $id= filter_var($_GET['id'],FILTER_SANITIZE_NUMBER_INT);
+        $sql = "select * from assassin where id=$id;";
         $run= mysqli_query($con, $sql);{
 
                 while ($row = $run->fetch_assoc()) {
-
-
       ?>
+
 
                 <h1 style="color: #fff;background: #033;padding: 20px;border-radius: 20px">Assassin Profile</h1><br><br>
 
@@ -90,9 +89,14 @@ div.a {
                     </form>
            </div>
         <?php
-                }}
+
         ?>
                      </div>
+
+
+
+
+
                <div  class="col-sm-3 box" style="background-color:#adadad; margin-left:10px;">
                    <legend><b>Payments</b></legend>
                    <table class="table">
@@ -136,4 +140,4 @@ div.a {
                    </table>
                 </div>
 
- </div>
+ </div>    
