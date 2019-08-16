@@ -58,13 +58,16 @@ if(isset($_POST['submit'])){
      include 'adminNav.php';
       ?>
      <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-16">
      <form class="form-horizontal" action="contracts.php" method="post">
        <div style="width: 400px;margin-left:4%;margin-top: 1.5%;box-shadow: 0px 0px 5px #660066;padding:20px; text-align: left">
         <div style='text-align: left;padding:px;background:  linear-gradient(To top right,#033,#3cc);color:white;border-radius: 25% 25% 0% 0%'>Enter New Contract</div>
          <label class="control-label col-sm-2" for="client">Select Client</label>
          <input type="hidden" name="id" value="<?php echo $id;?>"/>
-         <div style="text-align: left; padding-top: 10px;margin-left: 5%">
+         <div style="width: 400px;margin-left:4%;margin-top: 1.5%; text-align: left; padding-top: 10px;margin-left: 5%">
+         </div>
+
+
 
 <!-- Drop down clients -->
 
@@ -84,10 +87,11 @@ if(isset($_POST['submit'])){
  }
  }
  ?> </select>
-</div>
+
+   <div style="text-align: left; padding-top: 10px;margin-left: 5%">
    <label class="control-label col-sm-2" for="client">Select Hitman</label>
    <input type="hidden" name="id" value="<?php echo $id;?>"/>
-   <div style="text-align: left;padding-top: 100px;margin-left: 65%">
+
 
 <!-- Drop down killers -->
 
@@ -107,46 +111,40 @@ while ($row = $result->fetch_assoc()) {
 }
 }
 ?> </select>
-         </div><br>
-        <div class="row">
-         <div class="col-md-4">
+
         <form class="form-horizontal" action="contracts.php" method="post">
-            <input type="hidden" name="id" value="<?php echo $id;?>"/>
-            <div style="text-align: left; padding-top: 10px; margin-left: 5%">
-  </div>  </div>
-  </div>
-    <div class="form-group" style="margin-top: 1px">
-      <div style="text-align: left; padding-top: 1px; margin-left: 1%">
+            <input type="hidden" name="id" value="<?php echo $id;?>">
+            <div style="text-align: left; padding-top: 10px;margin-left: 5%">
     <label class="control-label col-sm-2" for="contracts">Price:</label>
-    <div class="col-sm-6" style="margin-top:1px">
-        <div style="text-align: left; padding-top: 10px; margin-left: 5%">
         <input type="text" class="form-control" name="contract" required="" placeholder="Contract Value" value="<?php echo $contractNumber;?>"/><br>
-    <div class="form-group" style="margin-top: 1px">
+        <div class="form-group" style="margin-top: 3px">
+         <div style="text-align: left; padding-top: 10px;margin-left: 5%">
     <label class="control-label col-sm-2" style="color:blue" for="contracts">Contract Number:</label>
-    <div class="col-sm-10" style="margin-top:10px">
         <input type="text" class="form-control" name="contractValue" required="" placeholder="Assign Contract Number" value="<?php echo $contractNumber;?>"/><br>
-
-
-            <div style="margin-left: 10px; text-align: right">
             <label class="control-label col-sm-2" style="color:blue" for="contracts">Contract Description:</label>
-            <div class="form-group" style="margin-top: 1px">
-    <div class="col-sm-10" style="margin-top:0.1px">
-         <div style="text-align: left">
+            <div class="form-group" style="margin-top: 3px">
+             <div style="text-align: left; padding-top: 10px;margin-left: 5%">
         <textarea class="form-control" name="desc" required="" placeholder="Contract Description" ><?php echo $desc;?></textarea><br>
-    </div>
-
-
-            <br>
              <button class="btn btn-warning" type="submit" name="submit" value="add">Submit</button>
         </form>
-      </div>
 
-        <div class="col-md-18">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+        <div class="col-md-20">
 
         <table class="table table-hover table-condensed" style="margin-top: 5%">
             <thead style="background: #660066;color:white">
             <th>ID</th>
-            <!-- <th>Client</th> -->
              <th>Contract Value</th>
               <th>Job Number</th>
               <th>Description</th>

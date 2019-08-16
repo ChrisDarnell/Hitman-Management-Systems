@@ -79,65 +79,12 @@ div.a {
 
                     <div class="a col-md-4" style="padding: 20px">
                    <?php      echo 'Retainer: '.$row['retainer'];
-                 ?>
+                 ?>    <?php
+                     }
+                     }
+                     ?>
+                 </tbody>
+             </table>
                </div>
-                    <form action="payment.php" method="POST">
-                      <div class="a" style="padding: 40px; margin: 40px">
-                          <input type="hidden" name="hitmanId" value="<?php echo  $hitmanId;?>" />
-                          <button style="margin:30px" class="btn btn-success pull-right " type="submit">Pay Killer</button>
-               </div>
-                    </form>
-           </div>
-        <?php
-
-        ?>
-                     </div>
-
-
-
-
-
-               <div  class="col-sm-3 box" style="background-color:#adadad; margin-left:10px;">
-                   <legend><b>Payments</b></legend>
-                   <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Payment ID</th>
-      <th scope="col">Date</th>
-      <th scope="col">Amount</th>
-    </tr>
-  </thead>
-  <tbody>
-       <?php
-         include 'conn.php';
-         $sql = "select * from transaction where hitmanId=$hitmanId";
-         if ($result = $con->query($sql)) {
-
-    /* fetch object array */
-    while ($row = $result->fetch_assoc()) {
-
-        ?>
-            <tr>
-
-                <td><?php echo $row['id']?></td>
-                <td><?php echo $row['date']?></td>
-                <td><?php echo $row['amount']?></td>
-                </tr>
-            <?php
-
-
-    }
-
-    /* free result set */
-    $result->close();
-}
-
-
-
-         ?>
-
-        </tbody>
-                   </table>
-                </div>
-
- </div>    
+             </body>
+         </html>

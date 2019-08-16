@@ -132,7 +132,7 @@ INSERT INTO `assassin` (`id`, `truename`, `codename`, `email`, `password`, `phon
 
 CREATE TABLE `transaction` (
   `id` int(11) NOT NULL,
-  `hitmanId` int(4) NOT NULL,
+  -- `hitmanId` int(4) NOT NULL,
   `date` date NOT NULL,
   `amount` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -141,12 +141,12 @@ CREATE TABLE `transaction` (
 -- Sample data for table `transaction`
 --
 
-INSERT INTO `transaction` (`id`, `hitmanId`, `date`, `amount`) VALUES
-(9, 6, '2019-07-23', '$500'),
-(10, 6, '2019-03-05', '$5000'),
-(11, 7, '2017-01-06', '$2000'),
-(12, 10, '2016-10-17', '$4500'),
-(13, 11, '2019-12-23', '$5000');
+INSERT INTO `transaction` (`id`, `date`, `amount`) VALUES
+(9,'2019-07-23', '$500'),
+(10, '2019-03-05', '$5000'),
+(11, '2017-01-06', '$2000'),
+(12, '2016-10-17', '$4500'),
+(13, '2019-12-23', '$5000');
 
 
 
