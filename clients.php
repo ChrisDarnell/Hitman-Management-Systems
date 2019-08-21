@@ -84,14 +84,14 @@ if(isset($_POST['submit'])){
             <div class="form-group" style="margin-top: 1px">
     <label class="control-label col-sm-2" style="color:green" for="email">Client Email</label>
     <div class="col-sm-10" >
-            <input type="text" class="form-control" name="email" placeholder="Client Email" value="<?php echo $name;?>"/><br>
+            <input type="email" class="form-control" name="email" placeholder="Client Email" value="<?php echo $name;?>"/><br>
     </div>
             </div>
 
             <div class="form-group" style="margin-top: 1px">
     <label class="control-label col-sm-2" style="color:green" for="password">Pass</label>
     <div class="col-sm-10" >
-            <input type="text" class="form-control" name="password" placeholder="Set Password" value="<?php echo $name;?>"/><br>
+            <input type="password" class="form-control" name="password" placeholder="Set Password" value="<?php echo $name;?>"/><br>
     </div>
   </div>
     <div class="form-group" style="margin-top: 1px">

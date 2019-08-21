@@ -1,8 +1,7 @@
 <?php
-
-
 include 'hitmanValidate.php';
 include 'hitmanNav.php';
+include 'conn.php';
 ?>
 
 <html lang="en" >
@@ -41,50 +40,50 @@ div.a {
 </head>
     <body style="background-image: url('img/john.jpg');background-attachment: fixed; background-repeat: no-repeat; background-size: cover">
           <div class='row' style="padding: 50px">
-
             <div  class="col-md-7 box" style="background-color:#adadad; margin-left:1%; ">
-        <?php
-        include 'conn.php';
-        $id= filter_var($_GET['id'],FILTER_SANITIZE_NUMBER_INT);
-        $sql = "select * from assassin where id=$id;";
-        $run= mysqli_query($con, $sql);{
-
-                while ($row = $run->fetch_assoc()) {
-      ?>
+                <h1>Welcome to your Dashboard, Killer<h1>
+                  <h3> Your Information</h3>
 
 
-                <h1 style="color: #fff;background: #033;padding: 20px;border-radius: 20px">Assassin Profile</h1><br><br>
+                  <div class="col-md-20">
 
-                <div class="row" style="color:yellow">
-                    <div class="a col-md-4" style="padding: 20px">
-                   <?php      echo 'True Name: '.$row['truename'];
-                 ?>
-               </div>
-                    <div class="a col-md-4" style="padding: 20px">
-                   <?php      echo 'Email: '.$row['email'];
-                 ?>
-               </div>
-                    <div class="a col-md-4" style="padding: 20px">
-                   <?php      echo 'Phone: '.$row['phone'];
-                 ?>
-               </div>
-                    <div class="a col-md-4" style="padding: 20px">
-                   <?php      echo 'Code Name: '.$row['codename'];
-                 ?>
-               </div>
-                    <div class="a col-md-4" style="padding: 20px">
-                   <?php      echo 'Location: '.$row['location'];
-                 ?>
-               </div>
+                  <table class="table table-hover table-condensed" style="margin-top: 5%">
+                      <thead style="background: #660066;color:white">
+                      <th>ID</th>
+                       <th>True Name</th>
+                        <th>Code Name</th>
+                        <th>Email</th>
+                        <th>Location</th>
+                        <th>Retainer</th>
+                      </thead>
+                      <tbody>
+                          <?php
+                          include 'conn.php';
+                          if(isset($_GET['update'])){
+                           $id= filter_var($_GET['id'],FILTER_SANITIZE_NUMBER_INT);
+                           $sql = "select * from assassin";
+                           $result= mysqli_query($con, $sql);
+                         }
 
-                    <div class="a col-md-4" style="padding: 20px">
-                   <?php      echo 'Retainer: '.$row['retainer'];
-                 ?>    <?php
-                     }
-                     }
-                     ?>
-                 </tbody>
-             </table>
+                          if($result){
+                              while($row = $result->fetch_assoc()){
+
+
+                          ?>
+                          <tr>
+                              <td><?php echo $row['id'];?></td>
+                              <td><?php echo $row['truename'];?></td>
+                              <td><?php echo $row['codename'];?></td>
+                              <td><?php echo $row['email']; ?></td>
+                              <td><?php echo $row['location']; ?></td>
+                              <td><?php echo $row['retainer']; ?></td>
+                            </tr>
+                          <?php
+                          }
+                        }
+                          ?>
+                      </tbody>
+                  </table>
                </div>
              </body>
          </html>

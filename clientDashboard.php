@@ -30,7 +30,6 @@ include 'clientNav.php';
 div.a {
     font-size: 100px;
 }
-
     </style>
 
 </head>
@@ -39,25 +38,26 @@ div.a {
         <?php
         include 'conn.php';
         include 'clientValidate.php';
-      //   $sql = "select * from `contracts` as totalContracts;";
-      //           $run= mysqli_query($con, $sql);{
-      //
-      //           while ($row = $run->fetch_assoc()) {
-      // $contracts= $row['totalContracts'];
+        $sql = "select COUNT (id) from contracts
+                LEFT JOIN clients on clients.id = contracts.clientId
+                as totalContracts;";
+                $run= mysqli_query($con, $sql);{
 
-
-
+                while ($row = $run->fetch_assoc()) {
+      $contracts= $row['totalContracts'];
       ?>
-        <div class='row' style="">
 
+        <div class='row' style="">
             <div  class="col-sm-6 box" style="background-color:black; margin-left:25%; height: 200px; width: 300px; ">
                 <h1 style="color: black">Pending Contracts<br></h1>
                     <div class="a" style="margin-left:90px;color: black">
+
                    <?php
                   echo "1";
-                   // echo $contract;
+                   // echo $totalContracts;
                  ?>
-
+}
+}
 
 
             <form action="payment.php" method="POST">
@@ -104,15 +104,11 @@ div.a {
         <td><?php echo $row['amount']?></td>
         </tr>
     <?php
-
-
 }
 
-/* free result set */
+// /* free result set */
 $result->close();
 }
-
-
 
  ?>
 
@@ -120,7 +116,6 @@ $result->close();
            </table>
         </div>
 
-</div>
 </div>
 
 </body>

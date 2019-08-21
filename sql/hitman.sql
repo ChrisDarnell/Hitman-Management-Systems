@@ -14,6 +14,13 @@ SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
+--
+-- Database: `hitman`
+--
+
+CREATE DATABASE IF NOT EXISTS hitman;
+USE hitman;
+
 
 -- Drop for testing/display
 
@@ -23,9 +30,6 @@ DROP TABLE IF EXISTS `assassin`;
 DROP TABLE IF EXISTS `transaction`;
 DROP TABLE IF EXISTS `clients`;
 
---
--- Database: `hitman`
---
 
 -- --------------------------------------------------------
 
@@ -34,9 +38,10 @@ DROP TABLE IF EXISTS `clients`;
 --
 
 CREATE TABLE `admin` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(200) NOT NULL,
-  `password` varchar(50) NOT NULL
+  `password` varchar(50) NOT NULL,
+  PRIMARY KEY(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -50,41 +55,16 @@ INSERT INTO `admin` (`id`, `email`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contracts`
---
-
-CREATE TABLE `contracts` (
-  `id` int(11) NOT NULL,
-  `contractValue` varchar(40) NOT NULL,
-  `contractNumber` varchar(200) NOT NULL,
-  `description` varchar(200) NOT NULL,
-  `clientId` int(11) NOT NULL,
-  `hitmanId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Sample data for 'contracts'
---
-
-INSERT INTO `contracts` (`id`, `contractValue`, `contractNumber`, `description`, `clientId`, `hitmanId`) VALUES
-(11, '$800000', 'B546', 'Evil Person #1 - Los Angeles, CA','2', '9'),
-(12, '$75000', 'CS34', 'Evil Person #2 - Very Dangerous', '3', '10'),
-(13, '$1000', 'D567', 'Evil Person #3','7', '11'),
-(14, '$10000', 'M542', 'Evil Person #4', '5', '9'),
-(15, '$115000', '3R56', 'Evil Person #5', '4', '10');
-
-
-
---
 -- Table structure for table `clients`
 --
 
 CREATE TABLE `clients` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `phone` varchar(13) NOT NULL
+  `phone` varchar(13) NOT NULL,
+  PRIMARY KEY(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -105,14 +85,15 @@ INSERT INTO `clients` (`id`, `name`, `email`, `password`, `phone`) VALUES
 --
 
 CREATE TABLE `assassin` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `truename` varchar(50) NOT NULL,
   `codename` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(20) NOT NULL,
   `phone` varchar(13) NOT NULL,
   `location` varchar(50) NOT NULL,
-  `retainer` varchar(20) NOT NULL
+  `retainer` varchar(20) NOT NULL,
+  PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -127,14 +108,42 @@ INSERT INTO `assassin` (`id`, `truename`, `codename`, `email`, `password`, `phon
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `contracts`
+--
+
+CREATE TABLE `contracts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `contractValue` varchar(40),
+  `contractNumber` varchar(200),
+  `description` varchar(200),
+  `clientId` int(11),
+  `hitmanId` int(11),
+  PRIMARY KEY (id),
+  FOREIGN KEY (clientId) REFERENCES clients(id),
+  FOREIGN KEY (hitmanId) REFERENCES assassin(id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Sample data for 'contracts'
+--
+
+INSERT INTO `contracts` (`id`, `contractValue`, `contractNumber`, `description`, `clientId`, `hitmanId`) VALUES
+(11, '$800000', 'B546', 'Evil Person #1 - Los Angeles, CA','2', '9'),
+(12, '$75000', 'CS34', 'Evil Person #2 - Very Dangerous', '3', '10'),
+(13, '$1000', 'D567', 'Evil Person #3','7', '11'),
+(14, '$10000', 'M542', 'Evil Person #4', '5', '9'),
+(15, '$115000', '3R56', 'Evil Person #5', '4', '10');
+
+--
 -- Table structure for table `transaction`
 --
 
 CREATE TABLE `transaction` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   -- `hitmanId` int(4) NOT NULL,
   `date` date NOT NULL,
-  `amount` varchar(20) NOT NULL
+  `amount` varchar(20) NOT NULL,
+  PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -152,76 +161,87 @@ INSERT INTO `transaction` (`id`, `date`, `amount`) VALUES
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 -- Indexes
 -- Indexes for table `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id`);
 
+-- ALTER TABLE `admin`
+--   ADD PRIMARY KEY (`id`);
 --
--- Indexes for table `contracts`
+-- --
+-- -- Indexes for table `contracts`
+-- --
+-- ALTER TABLE `contracts`
+--   ADD PRIMARY KEY (`id`);
 --
-ALTER TABLE `contracts`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `clientId` (`clientId`),
-  ADD KEY `hitmanId` (`hitmanId`);
-
+-- --
+-- -- Indexes for table `clients`
+-- --
+-- ALTER TABLE `clients`
+--   ADD PRIMARY KEY (`id`);
 --
--- Indexes for table `clients`
+-- --
+-- -- Indexes for table `assassin`
+-- --
+-- ALTER TABLE `assassin`
+--   ADD PRIMARY KEY (`id`);
 --
-ALTER TABLE `clients`
-  ADD PRIMARY KEY (`id`);
-
+-- --
+-- -- Indexes for table `transaction`
+-- --
+-- ALTER TABLE `transaction`
+--   ADD PRIMARY KEY (`id`);
 --
--- Indexes for table `assassin`
 --
-ALTER TABLE `assassin`
-  ADD PRIMARY KEY (`id`);
-
 --
--- Indexes for table `transaction`
 --
-ALTER TABLE `transaction`
-  ADD PRIMARY KEY (`id`);
-
-
-
-
+-- --
+-- -- AUTO_INCREMENT for dumped tables
+-- --
 --
--- AUTO_INCREMENT for dumped tables
---
-
---
+-- --
 -- AUTO_INCREMENT for table `admin`
 --
-ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+-- ALTER TABLE `admin`
+--   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `contracts`
+-- --
+-- -- AUTO_INCREMENT for table `contracts`
+-- --
+-- ALTER TABLE `contracts`
+--   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
-ALTER TABLE `contracts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
-
 --
--- AUTO_INCREMENT for table `clients`
+-- --
+-- -- AUTO_INCREMENT for table `clients`
+-- --
+-- ALTER TABLE `clients`
+--   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
-ALTER TABLE `clients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
+-- --
+-- -- AUTO_INCREMENT for table `assassin`
+-- --
+-- ALTER TABLE `assassin`
+--   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
--- AUTO_INCREMENT for table `assassin`
---
-ALTER TABLE `assassin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT for table `transaction`
---
-ALTER TABLE `transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-COMMIT;
+-- --
+-- -- AUTO_INCREMENT for table `transaction`
+-- --
+-- ALTER TABLE `transaction`
+--   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+-- COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

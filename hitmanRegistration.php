@@ -68,7 +68,7 @@
   <div class="col-md-8 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-  <input  name="pass" style="width: 150%" placeholder="Set Password" required="" class="form-control"  type="text" value="" >
+  <input  type="password" name="pass" style="width: 150%" placeholder="Set Password" required="" class="form-control"  type="text" value="" >
     </div>
   </div>
 </div>
@@ -92,7 +92,7 @@
 <div class="col-md-8 inputGroupContainer">
 <div class="input-group">
 <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
-<input  name="retainer" style="width: 150%" placeholder="Base Retainer" required="" class="form-control"  type="text" value="" >
+<input  name="retainer" style="width: 150%" placeholder="Base Retainer" required="" class="form-control"  type="number" value="" >
 </div>
 
             <button style="margin-left: 40%; margin-top: 20px" type='submit' class="btn btn-warning" name="submit" value="submit">Register</button>
@@ -129,7 +129,7 @@
                            <td><?php echo $row['location'];?></td>
                            <td><?php echo $row['retainer'];?></td>
                            <td><a href="assassins.php?update=1&id=<?php echo $row['id'];?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
-                           <td><a href="deletecontracts.php?id=<?php echo $row['id'];?>"><span class="glyphicon glyphicon-trash"></span></a></td>
+                           <td><a href="deleteHitman.php?id=<?php echo $row['id'];?>"><span class="glyphicon glyphicon-trash"></span></a></td>
                        </tr>
                        <?php
                        }
@@ -138,6 +138,22 @@
                    </tbody>
                </table>
                        </div>
+
+
+
+<!-- Restful Call  -->
+                       <!-- <script>
+      $("#assassin").change(function(){
+                console.log("Added Hitman");
+                var id=$("#assassin").val();
+                  console.log("id:"+id);
+        $.get("restful/getContracts.php?id="+bd, function(data, status){
+
+            $('#aprt').html(data);
+            console.log("success");
+        });
+     });
+     </script> -->
 
 
 

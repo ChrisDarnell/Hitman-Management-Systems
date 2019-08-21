@@ -18,7 +18,7 @@ $result = $con->query($sql);
 if($result->num_rows>0){
 
 
-  // User is valid
+  // Session: User is valid
     session_start();
     if(isset($_POST['adminBtn'])){
     $_SESSION['adminLogin']=true;

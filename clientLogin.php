@@ -15,7 +15,7 @@
 <nav class="navbar navbar-default navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Client Management</a>
+      <a class="navbar-brand" href="#">Client Management by Chris Darnell</a>
     </div>
     <ul class="nav navbar-nav pull-right">
 

@@ -6,7 +6,7 @@ $contractValue=$contractNumber=$desc=$clientId=$hitmanId="";
 if(isset($_GET['update'])){
     $id = $_GET['id'];
      $qry="select * from contracts where id=$id";
-          // "select "
+
   if ($result = $con->query($qry)) {
 
 
@@ -24,18 +24,18 @@ if(isset($_GET['update'])){
 
 if(isset($_POST['submit'])){
     $contractValue=$_POST['contractValue'];
-    $contractNumber=$_POST['$contractNumber'];
+    $contractNumber=$_POST['contractNumber'];
     $desc=$_POST['desc'];
     $id= $_POST['id'];
-    $clientId=$row['clientId'];
-    $hitmanId=$row['hitmanId'];
+    $clientId=$POST['clientId'];
+    $hitmanId=$POST['hitmanId'];
 
     if($id){
      $qry="Update contracts set contractValue='$contractValue',contractNumber='$contractNumber',description='$desc' ,clientId='$client', hitmanId=`$hitman` where id='$id'";
      $id=0;
-     $contractValue=$contractNumber=$desc=$client="";
+     $contractValue=$contractNumber=$desc=$client=$hitman="";
     }else{
-    $qry="insert into contracts(contractValue,contractNumber,description, client, hitman) values('$contractValue','$contractNumber','$desc','$client','$hitman')";
+    $qry="insert into contracts(contractValue,contractNumber,description, clientId, hitmanId) values('$contractValue','$contractNumber','$desc','$clientId','$hitmanId')";
     }
     $run=mysqli_query($con,$qry);
     if($run==true){
@@ -62,10 +62,8 @@ if(isset($_POST['submit'])){
      <form class="form-horizontal" action="contracts.php" method="post">
        <div style="width: 400px;margin-left:4%;margin-top: 1.5%;box-shadow: 0px 0px 5px #660066;padding:20px; text-align: left">
         <div style='text-align: left;padding:px;background:  linear-gradient(To top right,#033,#3cc);color:white;border-radius: 25% 25% 0% 0%'>Enter New Contract</div>
-         <label class="control-label col-sm-2" for="client">Select Client</label>
+         <label class="control-label col-sm-2" style="color:blue" for="client">Select Client</label><br>
          <input type="hidden" name="id" value="<?php echo $id;?>"/>
-         <div style="width: 400px;margin-left:4%;margin-top: 1.5%; text-align: left; padding-top: 10px;margin-left: 5%">
-         </div>
 
 
 
@@ -86,16 +84,15 @@ if(isset($_POST['submit'])){
                      <?php
  }
  }
- ?> </select>
+ ?> </select><br>
 
-   <div style="text-align: left; padding-top: 10px;margin-left: 5%">
-   <label class="control-label col-sm-2" for="client">Select Hitman</label>
+ <label class="control-label col-sm-2" style="color:blue" for="assassin">Select Hitman</label><br>
    <input type="hidden" name="id" value="<?php echo $id;?>"/>
 
 
 <!-- Drop down killers -->
 
-       <select class="form-control" style="display:inline; width: 80%;" name="assassin" >
+     <select class="form-control" style="display:inline; width: 80%;" name="assassin" >
            <?php
                        include 'conn.php';
                        $qry="select * from assassin";
@@ -111,34 +108,24 @@ while ($row = $result->fetch_assoc()) {
 }
 }
 ?> </select>
+            <input type="hidden" name="id" value="<?php echo $id;?>"<br><br>
+            <label class="control-label col-sm-2" style="color:blue" for="contractValue">Price:</label>
+        <input type="number" class="form-control" name="contractValue" required="" placeholder="Contract Value" value="<?php echo $contractValue;?>"/><br>
 
-        <form class="form-horizontal" action="contracts.php" method="post">
-            <input type="hidden" name="id" value="<?php echo $id;?>">
-            <div style="text-align: left; padding-top: 10px;margin-left: 5%">
-    <label class="control-label col-sm-2" for="contracts">Price:</label>
-        <input type="text" class="form-control" name="contract" required="" placeholder="Contract Value" value="<?php echo $contractNumber;?>"/><br>
-        <div class="form-group" style="margin-top: 3px">
-         <div style="text-align: left; padding-top: 10px;margin-left: 5%">
+
     <label class="control-label col-sm-2" style="color:blue" for="contracts">Contract Number:</label>
-        <input type="text" class="form-control" name="contractValue" required="" placeholder="Assign Contract Number" value="<?php echo $contractNumber;?>"/><br>
+        <input type="text" class="form-control" name="contractNumber" required="" placeholder="Assign Contract Number" value="<?php echo $contractNumber;?>"/><br>
             <label class="control-label col-sm-2" style="color:blue" for="contracts">Contract Description:</label>
-            <div class="form-group" style="margin-top: 3px">
-             <div style="text-align: left; padding-top: 10px;margin-left: 5%">
+
+
         <textarea class="form-control" name="desc" required="" placeholder="Contract Description" ><?php echo $desc;?></textarea><br>
              <button class="btn btn-warning" type="submit" name="submit" value="add">Submit</button>
         </form>
-
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
 </div>
 
 
 
-
+<!-- Table -->
 
         <div class="col-md-20">
 
@@ -148,14 +135,18 @@ while ($row = $result->fetch_assoc()) {
              <th>Contract Value</th>
               <th>Job Number</th>
               <th>Description</th>
-              <th>Client ID</th>
-              <th>Hitman ID</th>
+              <th>Client Name</th>
+              <th>Hitman Codename</th>
               <th>Update</th>
               <th>Delete</th>
             </thead>
             <tbody>
                 <?php
-                $sql = "select * from `contracts;";
+                $sql = "SELECT *  FROM contracts
+                      LEFT JOIN clients on clients.id = contracts.clientId
+                      LEFT JOIN assassin on assassin.id = contracts.hitmanId
+                      ORDER BY contracts.id;
+                ;";
                 $result=mysqli_query($con,$sql);
                 if($result){
                     while($row = $result->fetch_assoc()){
@@ -167,8 +158,8 @@ while ($row = $result->fetch_assoc()) {
                     <td><?php echo $row['contractValue'];?></td>
                     <td><?php echo $row['contractNumber'];?></td>
                     <td><?php echo $row['description']; ?></td>
-                    <td><?php echo $row['clientId']; ?></td>
-                    <td><?php echo $row['hitmanId']; ?></td>
+                    <td><?php echo $row['name']; ?></td>
+                    <td><?php echo $row['codename']; ?></td>
                     <td><a href="contracts.php?update=1&id=<?php echo $row['id'];?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
                     <td><a href="deletecontracts.php?id=<?php echo $row['id'];?>"><span class="glyphicon glyphicon-trash"></span></a></td>
                 </tr>

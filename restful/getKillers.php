@@ -1,11 +1,11 @@
 <?php
 
 
-if(isset($_GET['contractValue'])){
+if(isset($_GET['contractId'])){
 
-        $contractValue=$_GET['contractValue'];
+        $contractValue=$_GET['contractId'];
         include '../conn.php';
-         $qry="select * from contracts where contractValue=$contractValue and id Not In(select id from assassin);";
+         $qry="select * from contracts where contractId=$contractId;";
                                 if ($result = $con->query($qry)) {
 
 
@@ -19,7 +19,7 @@ if(isset($_GET['contractValue'])){
     while ($row = $result->fetch_assoc()) {
                     ?>
 
-                    <option value="<?php echo $row['id']; ?>" ><?php echo $row['contractNumber']; ?>
+                    <option value="<?php echo $row['id']; ?>" ><?php echo $row['contractId']; ?>
                         </option>
 
 

@@ -67,14 +67,45 @@ include 'clientValidate.php';
   </div>
 </div>
 
+<div class="form-group" style="margin-left: 10%">
+<div class="col-md-4 inputGroupContainer">
+<div class="input-group">
+<div style="text-align: left; padding-top: 10px;margin-left: 5%">
+<label class="control-label col-sm-2" for="client">Select Hitman</label>
+<input type="hidden" name="id" value="<?php echo $id;?>"/>
+</div>
+
+
+<!-- Drop down killers -->
+
+       <select class="form-control" style="display:inline; width: 80%;" name="assassin" >
+           <?php
+                       include 'conn.php';
+                       $qry="select * from assassin";
+                       if ($result = $con->query($qry)) {
+
+
+while ($row = $result->fetch_assoc()) {
+           ?>
+
+            <option value="<?php echo $row['codename']; ?>" selected="<?php if($row['id']==$hitmanId){echo 'true';}else{echo 'false';}?>" ><?php echo $row['codename']; ?>
+               </option>
+               <?php
+}
+}
+?> </select>
+</div>
+</div>
+</div>
 
 
 
-<!-- Select contracts to come
+
+<!-- Select contracts to come -->
 
 
             <select class="form-control" style="display:inline; margin-left: 140px; width: 20%;" name="contracts" id="contracts">
-                 <option>Select contracts</option>
+                 <option>Select Contracts</option>
                     <?php
                                 include 'conn.php';
                                 $qry="select * from contracts";
@@ -96,7 +127,7 @@ include 'clientValidate.php';
                  <option>Select contracts first</option>
 
 
-             </select> -->
+             </select>
 
 
             <button style="margin-left: 20%; margin-top: 20px" type='submit' class="btn btn-warning" name="submit" value="submit">Register</button>

@@ -5,7 +5,7 @@
 <nav class="navbar navbar-default navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-        <a class="navbar-brand" href="clientDashboard.php">Client Management</a>
+        <a class="navbar-brand" href="clientDashboard.php">Client Dashboard by Chris Darnell</a>
     </div>
     <ul class="nav navbar-nav pull-right">
         <li><a href="clientReg.php">Request New Contract</a></li>

@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 
 <html>
 
@@ -53,11 +52,6 @@
   </div>
 </form>
 </div>
-
-
 </div>
-
 </body>
-
-
 </html>
